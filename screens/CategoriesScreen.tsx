@@ -5,7 +5,7 @@ import CategoryBox from '../components/CategoryBox';
 
 export default function CategoriesScreen() {
   return (
-    <View style={styles.categoriesGrid}>
+    <View>
       <FlatList
         data={CATEGORIES}
         renderItem={item => <CategoryBox item={item.item} /> }
@@ -15,10 +15,3 @@ export default function CategoriesScreen() {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  categoriesGrid: {
-    // marginHorizontal: 'auto',
-    // justifyContent: 'space-between'
-  }
-})
