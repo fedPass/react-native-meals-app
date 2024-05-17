@@ -10,6 +10,7 @@ export default function CategoriesScreen() {
         data={CATEGORIES}
         renderItem={item => <CategoryBox item={item.item} /> }
         keyExtractor={item => item.id}
+        numColumns={2}
       />
     </View>
   );
@@ -17,6 +18,7 @@ export default function CategoriesScreen() {
 
 const styles = StyleSheet.create({
   categoriesGrid: {
-    flexDirection: 'row'
+    // marginHorizontal: 'auto',
+    // justifyContent: 'space-between'
   }
 })
