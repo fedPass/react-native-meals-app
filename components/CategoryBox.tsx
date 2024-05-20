@@ -1,6 +1,6 @@
 import {Platform, Pressable, StyleSheet, Text, View} from 'react-native';
 
-export default function CategoryBox(item: any) {
+export default function CategoryBox({item, onPress}:any) {
   return (
     <View style={styles.categoryGrid}>
       <Pressable
@@ -8,9 +8,10 @@ export default function CategoryBox(item: any) {
         style={({ pressed }) => [
           styles.button,
           Platform.OS === 'ios' && pressed ? styles.buttonPressed : null,
-        ]}>
-        <View style={[styles.categoryBox, {backgroundColor: item.item.color}]}>
-          <Text style={styles.categoryText}>{item.item.title}</Text>
+        ]}
+        onPress={onPress}>
+        <View style={[styles.categoryBox, {backgroundColor: item.color}]}>
+          <Text style={styles.categoryText}>{item.title}</Text>
         </View>
       </Pressable>
     </View>
