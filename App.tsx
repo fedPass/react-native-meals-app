@@ -11,6 +11,7 @@ import CategoriesScreen from './screens/CategoriesScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
+import MealDetailScreen from './screens/MealDetailScreen';
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -59,6 +60,10 @@ function App(): React.JSX.Element {
             //     title: catId,
             //   };
             // }}
+          />
+          <Stack.Screen
+            name="MealDetail"
+            component={MealDetailScreen}
           />
         </Stack.Navigator>
       </NavigationContainer>
