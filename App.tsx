@@ -4,6 +4,7 @@ import {
   StatusBar,
   StyleSheet,
   useColorScheme,
+  Button
 } from 'react-native';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -63,7 +64,17 @@ function App(): React.JSX.Element {
           />
           <Stack.Screen
             name="MealDetail"
-            component={MealDetailScreen}
+            component={MealDetailScreen} 
+            // this is a way to set button on header nav
+            // options={{
+            //   headerRight: () => (
+            //     <Button
+            //       onPress={() => alert('This is a button!')}
+            //       title="&#9829;"
+            //       color="transparent"
+            //     />
+            //   )
+            // }}
           />
         </Stack.Navigator>
       </NavigationContainer>

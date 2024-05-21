@@ -1,7 +1,22 @@
-import {Image, ScrollView, StyleSheet, Text, View} from 'react-native';
+import { useLayoutEffect } from 'react';
+import {Image, ScrollView, StyleSheet, Text, View, Button} from 'react-native';
 
-export default function MealDetailScreen({route}: any) {
+export default function MealDetailScreen({route, navigation}: any) {
   const mealInfo = route.params.item;
+  const mealTitle = route.params.item.item.title;
+  console.log(mealTitle);
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      title: mealTitle,
+      headerRight: () => (
+        <Button
+          onPress={() => console.log('Pressed')}
+          title="&#9829;"
+          color="#06595C"
+        />
+      )
+    })
+  }, [])
   return (
     <ScrollView>
       <Image source={{uri: mealInfo.item.imageUrl}} style={styles.mealImage} />
