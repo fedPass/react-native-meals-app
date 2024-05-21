@@ -4,7 +4,6 @@ import {Image, ScrollView, StyleSheet, Text, View, Button} from 'react-native';
 export default function MealDetailScreen({route, navigation}: any) {
   const mealInfo = route.params.item;
   const mealTitle = route.params.item.item.title;
-  console.log(mealTitle);
   useLayoutEffect(() => {
     navigation.setOptions({
       title: mealTitle,
