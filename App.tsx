@@ -11,8 +11,38 @@ import {Colors} from 'react-native/Libraries/NewAppScreen';
 import CategoriesScreen from './screens/CategoriesScreen';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import MealsOverviewScreen from './screens/MealsOverviewScreen';
 import MealDetailScreen from './screens/MealDetailScreen';
+import FavouritesScreen from './screens/FavouritesScreen';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+
+const TabNavigator = () => {
+  return (
+    <Tab.Navigator screenOptions={{
+      headerShown: false,
+      tabBarActiveTintColor: '#fff',
+      tabBarActiveBackgroundColor: '#06595C',
+      tabBarStyle: {
+        borderTopWidth: 0
+      }
+    }}
+    sceneContainerStyle= {{
+      backgroundColor: "#3B8C8F"
+    }}>
+      <Tab.Screen name='Categories' component={CategoriesScreen} options={{
+        tabBarIcon: ({color, size}) => <Icon name="list" color={color} size={size} />
+      }}></Tab.Screen>
+      <Tab.Screen name='Favourites' component={FavouritesScreen} options={{
+        tabBarIcon: ({color, size}) => <Icon name="star" color={color} size={size} />
+      }}></Tab.Screen>
+    </Tab.Navigator>
+  )
+}
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -20,8 +50,6 @@ function App(): React.JSX.Element {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
-
-  const Stack = createNativeStackNavigator();
 
   return (
     // <SafeAreaView style={backgroundStyle}>
@@ -46,9 +74,10 @@ function App(): React.JSX.Element {
           }}>
           <Stack.Screen
             name="MealCategories"
-            component={CategoriesScreen}
+            component={TabNavigator}
             options={{
-              title: 'All meat categories',
+              headerShown: false,
+              // title: 'All meat categories',
             }}
           />
           <Stack.Screen 
