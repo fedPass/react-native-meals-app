@@ -1,10 +1,28 @@
-import { useLayoutEffect } from 'react';
+import {useLayoutEffect} from 'react';
 import {Image, ScrollView, StyleSheet, Text, View, Button} from 'react-native';
 import IconButton from '../components/IconButton';
+import {useDispatch, useSelector} from 'react-redux';
+import {addFavourite, removeFavourite} from '../store/redux/favourites';
 
 export default function MealDetailScreen({route, navigation}: any) {
   const mealInfo = route.params.item;
-  const mealTitle = route.params.item.item.title;
+  const mealTitle = mealInfo.item.title;
+  const mealId = mealInfo.item.id;
+  // react-redux provides the state param to access store. so we use the key declared in configureStore() and so access to slice
+  const favouriteMealIds = useSelector(
+    (state: any) => state.favouriteMeals.ids,
+  );
+  const isMealFavourite = favouriteMealIds.includes(mealId);
+  //  dispatch is used to call slice actions
+  const dispatch = useDispatch();
+
+  function changeFavoriteStatusHandler() {
+    if (isMealFavourite) {
+      dispatch(removeFavourite({id: mealId}));
+    } else {
+      dispatch(addFavourite({id: mealId}));
+    }
+  }
   useLayoutEffect(() => {
     navigation.setOptions({
       title: mealTitle,
@@ -14,10 +32,13 @@ export default function MealDetailScreen({route, navigation}: any) {
         //   title="&#9829;"
         //   color="#06595C"
         // />
-        <IconButton name="star-o" />
-      )
-    })
-  }, [])
+        <IconButton
+          name={isMealFavourite ? 'star' : 'star-o'}
+          onPress={changeFavoriteStatusHandler}
+        />
+      ),
+    });
+  }, [navigation, changeFavoriteStatusHandler]);
   return (
     <ScrollView>
       <Image source={{uri: mealInfo.item.imageUrl}} style={styles.mealImage} />
