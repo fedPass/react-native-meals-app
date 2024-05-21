@@ -1,5 +1,6 @@
 import { useLayoutEffect } from 'react';
 import {Image, ScrollView, StyleSheet, Text, View, Button} from 'react-native';
+import IconButton from '../components/IconButton';
 
 export default function MealDetailScreen({route, navigation}: any) {
   const mealInfo = route.params.item;
@@ -8,11 +9,12 @@ export default function MealDetailScreen({route, navigation}: any) {
     navigation.setOptions({
       title: mealTitle,
       headerRight: () => (
-        <Button
-          onPress={() => console.log('Pressed')}
-          title="&#9829;"
-          color="#06595C"
-        />
+        // <Button
+        //   onPress={() => console.log('Pressed')}
+        //   title="&#9829;"
+        //   color="#06595C"
+        // />
+        <IconButton />
       )
     })
   }, [])
