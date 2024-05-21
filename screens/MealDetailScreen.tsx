@@ -14,7 +14,7 @@ export default function MealDetailScreen({route, navigation}: any) {
         //   title="&#9829;"
         //   color="#06595C"
         // />
-        <IconButton />
+        <IconButton name="star-o" />
       )
     })
   }, [])

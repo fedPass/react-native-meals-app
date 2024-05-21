@@ -1,11 +1,11 @@
 import { Pressable } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-export default function IconButton() {
+export default function IconButton({name}:any) {
   return(
     <Pressable>
       <Icon.Button
-        name="star"
+        name={name}
         backgroundColor="#06595C"
         onPress={() => console.log('Pressed')}
       >
